@@ -1,0 +1,481 @@
+entity Vehicule {
+    couleur String
+    couleurAR String
+    cylindree Integer required
+    dateInsertion ZonedDateTime
+    datePremierMiseEnCirculation ZonedDateTime
+    matriculeVehicule String required
+    matriculeAR String
+    nombrePlaces Integer required
+    nombrePortes Integer required
+    nombreRoue Integer
+    numeroChassie String
+    odometre Integer required
+    poids Integer
+    puissance Integer required
+    matriculePE String
+    prix Double
+    dateAcquisition ZonedDateTime
+    description String
+    poidLourd Integer required
+}
+
+entity MDeafVehiculeGenre {
+    idClt Integer
+    libelle String
+    libelleAR String
+}
+
+entity MDeafVehiculeModeleCommercial {
+    libelle String
+    libelleAR String
+    description String
+    descriptionAR String
+}
+
+entity VehiculeUnite {
+    dateAffectation ZonedDateTime
+}
+
+entity Unite {
+    uniteIdClt Integer
+    uniteLibelle String
+    uniteLibelleAR String
+    uniteDescription String
+    uniteDescriptionAR String
+    uniteAbreviation String
+    uniteCodeParent Integer
+    uniteMatriculeResponsable Integer
+}
+
+entity VehiculeCategory {
+    cone Blob
+    libelle String
+    libelleAR String
+}
+
+entity Climatisation {
+    libelle String
+}
+
+entity Etat {
+    libelle String
+    libelleAR String
+    description String
+    descriptionAR String
+}
+
+entity Carburant {
+    libelle String
+    libelleAR String
+    description String
+    descriptionAR String
+}
+
+entity SourceAcquisition {
+    libelle String
+    libelleAR String
+    description String
+    descriptionAR String
+}
+
+entity Transmission {
+    libelle String
+    libelleAR String
+}
+
+entity DimensionRoue {
+    libelle String
+}
+
+entity OdometreType {
+    libelle String
+    description String
+}
+
+entity AcquisitionType {
+    libelle String
+    description String
+    libelleAR String
+}
+
+entity AffectationType {
+    idClt String
+    libelle String
+    libelleAR String
+}
+
+entity Version {
+    libelle String
+    libelleAR String
+    idClt Integer
+}
+
+entity MarqueModele {
+    idClt Integer
+    libelle String
+    libelleAR String
+}
+
+entity Marque {
+    idClt Integer
+    libelle String
+    libelleAR String
+}
+
+entity VehiculeEquipementVehicule
+
+entity VehiculeEquipement {
+    description String
+    libelle String
+}
+
+entity VehiculeEquipementType {
+    description String
+    libelle String
+}
+
+entity AssuranceModeReglement {
+    modeReglementLibelle String required
+}
+
+entity VehiculeVignette {
+    dateDebut ZonedDateTime
+    dateFin ZonedDateTime
+    dateReglementReelle ZonedDateTime required
+    numeroQuittance String
+    supression Integer
+    prix Double
+}
+
+entity VehiculeVignetteDieselQuittance {
+    dateDebut ZonedDateTime
+    dateFin ZonedDateTime
+    montant String
+}
+
+entity VehiculeVignetteDiesel {
+    dateDebut ZonedDateTime
+    dateFin ZonedDateTime
+    montant String
+}
+
+entity VehiculeContraventionNature {
+    libelle String
+    description String
+    libelleAR String
+}
+
+entity VehiculeContravention {
+    reference String
+    dateReelle ZonedDateTime
+    dateRecu ZonedDateTime
+    dateSysteme ZonedDateTime
+    montant Float
+    heureReelle Integer
+    minuteReelle Integer
+    personnelReference Integer
+}
+
+entity VehiculeContraventionType {
+    libelle String
+    libelleAR String
+    description String
+    descriptionAR String
+}
+
+entity VehiculeVisiteTechnique {
+    dateProchaineVisite ZonedDateTime required
+    dateReelleVisite ZonedDateTime required
+    dateReglement ZonedDateTime
+    dateVisite ZonedDateTime required
+    numRecu String required
+    prix Float required
+    supression Integer
+}
+
+entity VehiculeAccident {
+    date ZonedDateTime
+    blesse Integer
+    degat Integer
+    temoin String
+    cas Integer
+    degatApparent String
+    observation String
+    expertiseDate ZonedDateTime
+    villeAdresseId Integer unique
+    personnelId Integer
+    minute Integer
+    heure Integer
+    commentaires String
+    prixReparation Float
+    commentaire String
+    image Blob
+    fraisRemboursement Double
+    fraisPieces Float
+    fraisMainOuevre Float
+    personnelId Integer unique
+}
+
+entity AssurancePoliceVehicule {
+    dateRenouvellement ZonedDateTime
+    expireLe ZonedDateTime
+    supression Integer
+    valableDu ZonedDateTime
+}
+
+entity AssurancePoliceQuittance {
+    dateDebut ZonedDateTime
+    dateFin ZonedDateTime
+    dateReglement ZonedDateTime
+    montant Double
+    numeroQuittance String
+    suppression Integer
+}
+
+entity AssurancePoliceValiditeQuittance {
+    libelle String
+    nombreJours Integer
+}
+
+entity AssurancePolice {
+    dateRenouvellementAssurance ZonedDateTime
+    expireLe ZonedDateTime
+    montantAnnuel Double
+    NumeroContrat String
+    suppression Integer
+    valableDu ZonedDateTime
+}
+
+entity AssurancePoliceAssureur {
+    adresse String
+    emails String
+    fax String
+    gouvernorat String
+    libelle String
+    nomComplet String
+    numeroTelephone String
+    siteWeb String
+    ville String
+}
+
+entity AssurancePoliceResiliation {
+    libelle String
+    nombreJours Integer
+}
+
+entity AssurancePoliceTypeProtectionR
+
+entity AssurancePoliceTypeProtection {
+    description String
+    libelle String
+}
+
+relationship ManyToOne {
+    Vehicule{MDeafVehiculeGenre required} to MDeafVehiculeGenre{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{MDeafVehiculeModeleCommercial} to MDeafVehiculeModeleCommercial{Vehicule}
+}
+
+relationship ManyToOne {
+    VehiculeUnite{Vehicule required} to Vehicule{VehiculeUnite}
+}
+
+relationship ManyToOne {
+    VehiculeUnite{Unite required} to Unite{VehiculeUnite}
+}
+
+relationship ManyToOne {
+    VehiculeEquipementVehicule{Vehicule} to Vehicule{VehiculeEquipementVehicule}
+}
+
+relationship ManyToOne {
+    VehiculeEquipementVehicule{VehiculeEquipement} to VehiculeEquipement{VehiculeEquipementVehicule}
+}
+
+relationship ManyToOne {
+    VehiculeEquipement{VehiculeEquipementType} to VehiculeEquipementType{VehiculeEquipement}
+}
+
+relationship ManyToOne {
+    AssurancePoliceTypeProtectionR{AssurancePoliceTypeProtection} to AssurancePoliceTypeProtection{AssurancePoliceTypeProtectionR}
+}
+
+relationship ManyToOne {
+    AssurancePoliceTypeProtectionR{AssurancePolice} to AssurancePolice{AssurancePoliceTypeProtectionR}
+}
+
+relationship  ManyToOne {
+    AssurancePoliceVehicule{AssurancePolice} to AssurancePolice{AssurancePoliceVehicule}
+}
+
+relationship  ManyToOne {
+    AssurancePolice{AssurancePoliceAssureur} to AssurancePoliceAssureur{AssurancePolice}
+}
+
+relationship  ManyToOne {
+    AssurancePolice{AssurancePoliceResiliation} to AssurancePoliceResiliation{AssurancePolice}
+}
+
+relationship  ManyToOne {
+    AssurancePoliceVehicule{AssurancePoliceQuittance} to AssurancePoliceQuittance{AssurancePoliceVehicule}
+}
+
+relationship  ManyToOne {
+    AssurancePoliceQuittance{Etat} to Etat{AssurancePoliceQuittance}
+}
+
+relationship  ManyToOne {
+    VehiculeVisiteTechnique{Etat required} to Etat{VehiculeVisiteTechnique}
+}
+
+relationship  ManyToOne {
+    VehiculeVisiteTechnique{Vehicule} to Vehicule{VehiculeVisiteTechnique}
+}
+
+relationship  ManyToOne {
+    AssurancePoliceQuittance{AssurancePoliceValiditeQuittance} to AssurancePoliceValiditeQuittance{AssurancePoliceQuittance}
+}
+
+relationship  ManyToOne {
+    AssurancePoliceQuittance{AssuranceModeReglement} to AssuranceModeReglement{AssurancePoliceQuittance}
+}
+
+relationship ManyToOne {
+    VehiculeAccident{Vehicule} to Vehicule{VehiculeAccident}
+}
+
+relationship ManyToOne {
+    AssurancePoliceVehicule{Vehicule} to Vehicule{AssurancePoliceVehicule}
+}
+
+relationship ManyToOne {
+    VehiculeContravention{Vehicule} to Vehicule{VehiculeContravention}
+}
+
+relationship ManyToOne {
+    VehiculeContravention{Etat} to Etat{VehiculeContravention}
+}
+
+relationship ManyToOne {
+    VehiculeContravention{VehiculeContraventionNature} to VehiculeContraventionNature{VehiculeContravention}
+}
+
+relationship ManyToOne {
+    VehiculeContravention{VehiculeContraventionType} to VehiculeContraventionType{VehiculeContravention}
+}
+
+relationship ManyToOne {
+    VehiculeVignetteDieselQuittance{VehiculeVignette} to VehiculeVignette{VehiculeVignetteDieselQuittance}
+}
+
+relationship ManyToOne {
+    VehiculeVignetteDiesel{Vehicule} to Vehicule{VehiculeVignetteDiesel}
+}
+
+relationship ManyToOne {
+    VehiculeVignette{AssuranceModeReglement required} to AssuranceModeReglement{VehiculeVignette}
+}
+
+relationship ManyToOne {
+    VehiculeVignette{Etat} to Etat{VehiculeVignette}
+}
+
+relationship ManyToOne {
+    Vehicule{VehiculeCategory} to VehiculeCategory{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{Climatisation} to Climatisation{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{Etat} to Etat{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{Carburant required} to Carburant{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{SourceAcquisition} to SourceAcquisition{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{Transmission required} to Transmission{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{DimensionRoue} to DimensionRoue{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{AcquisitionType} to AcquisitionType{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{OdometreType required} to OdometreType{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{AffectationType} to AffectationType{Vehicule}
+}
+
+relationship ManyToOne {
+    Vehicule{Version} to Version{Vehicule}
+}
+
+relationship ManyToOne {
+    Version{MarqueModele required} to MarqueModele{Version}
+}
+
+relationship ManyToOne {
+    Version{VehiculeCategory} to VehiculeCategory{Version}
+}
+
+relationship ManyToOne {
+    Vehicule{MarqueModele} to MarqueModele{Vehicule}
+}
+
+relationship ManyToOne {
+    MarqueModele{Marque} to Marque{MarqueModele}
+}
+
+paginate Vehicule with pagination
+paginate MDeafVehiculeGenre with pagination
+paginate MDeafVehiculeModeleCommercial with pagination
+paginate VehiculeUnite with pagination
+paginate VehiculeCategory with pagination
+paginate Climatisation with pagination
+paginate Carburant with pagination
+paginate Etat with pagination
+paginate SourceAcquisition with pagination
+paginate DimensionRoue with pagination
+paginate OdometreType with pagination
+paginate Transmission with pagination
+paginate AcquisitionType with pagination
+paginate AffectationType with pagination
+paginate Version with pagination
+paginate MarqueModele with pagination
+paginate Marque with pagination
+paginate VehiculeEquipementVehicule with pagination
+paginate VehiculeEquipement with pagination
+paginate VehiculeEquipementType with pagination
+paginate VehiculeVignette with pagination
+paginate VehiculeVignetteDieselQuittance with pagination
+paginate VehiculeContravention with pagination
+paginate VehiculeContraventionNature with pagination
+paginate VehiculeContraventionType with pagination
+paginate VehiculeVisiteTechnique with pagination
+paginate VehiculeAccident with pagination
+paginate AssuranceModeReglement with pagination
+paginate AssurancePolice with pagination
+paginate AssurancePoliceQuittance with pagination
+paginate AssurancePoliceResiliation with pagination
+paginate AssurancePoliceAssureur with pagination
+paginate AssurancePoliceValiditeQuittance with pagination
+paginate AssurancePoliceVehicule with pagination
+paginate AssurancePoliceTypeProtectionR with pagination
+paginate AssurancePoliceTypeProtection with pagination

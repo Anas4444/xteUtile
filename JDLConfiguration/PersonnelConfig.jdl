@@ -1,0 +1,71 @@
+entity Personnel {
+    personnelReference Integer required
+    personnelReferenceClt Integer
+    personnelMatricule String
+    personnelNom String
+    personnelNomAR String
+    personnelPrenom String
+    personnelPrenomAR String
+    DateNaissance ZonedDateTime
+    DateEmbauche ZonedDateTime
+    personnelBenificiereCarburant Boolean
+    personnelCellulaire String
+    personnelNumeroTelephone String
+    personnelNumeroPermisConduire String
+    personnelDateLivraisonPermisConduire String
+    personnelSalaire Integer
+    personnelDateSortie String
+    personnelDateGrade Integer
+    fonctionId Integer unique
+    etatId Integer unique
+    uniteId Integer unique
+    categoriePersonnel Integer
+}
+
+entity Personnelgrade {
+    gradeId Integer required
+    gradeIdClt Integer
+    gradeLibelle String
+    gradeLibelleAR String
+    gradeOrdre Integer
+}
+
+entity Personnelchauffeur {
+    chauffeurReference Integer required
+    disponibiliteId String
+    personnelchauffeurprovisoire Integer
+}
+
+entity Personnelattributionquotacarburant {
+    personnelAttributionQuotaCarburantId Integer required
+    personnelAttributionQuotaCarburantAnnee Integer
+    personnelAttributionQuotaCarburantDateRemise ZonedDateTime
+    personnelAttributionQuotaCarburantDateSysteme ZonedDateTime
+    personnelAttributionQuotaCarburantMois Integer
+}
+entity Personnelautrepersonnel {
+    autrepersonnelReference Integer required
+    autrepersonnelDepartement ZonedDateTime
+    autrepersonnelDepartementAR ZonedDateTime
+    autrepersonnelEmail Integer
+}
+
+relationship OneToOne {
+    Personnelchauffeur{personnelReference} to  Personnel
+}
+relationship ManyToOne {
+    Personnel{gradeId} to Personnelgrade
+}
+
+relationship OneToOne {
+    Personnelattributionquotacarburant{PersonnelId}  to Personnel
+}
+relationship OneToOne {
+    Personnelautrepersonnel{personnelReference}  to Personnel
+}
+
+paginate Personnel with pagination
+paginate Personnelgrade with pagination
+paginate Personnelchauffeur with pagination
+paginate Personnelattributionquotacarburant with pagination
+paginate Personnelautrepersonnel with pagination
