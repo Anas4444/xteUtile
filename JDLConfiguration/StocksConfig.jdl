@@ -1,5 +1,5 @@
 entity Boncommande {
-    bonCommandeId Integer required
+    @Id bonCommandeId Long
     bonCommandeNumero Integer
     bonCommandeDate ZonedDateTime required
     bonCommandeDateSysteme ZonedDateTime
@@ -14,15 +14,17 @@ entity Boncommande {
     bonCommandeTimbre Double required
     bonCommandetotalNet Double
 }
+
 entity Bonlivraison {
-    bonLivraisonId Integer required
+    @Id bonLivraisonId Long
     bonLivraisonNumero ZonedDateTime required
     bonLivraisonDate String required
     bonLivraisonDateSysteme String
     bonLivraisonObservation Integer
 }
-entity Fournisseur{
-    fournisseurId Integer required
+
+entity Fournisseur {
+    @Id fournisseurId Long
     fournisseurRaisonSociale String
     fournisseurAdresse String
     fournisseurTelephone String required
@@ -33,7 +35,7 @@ entity Fournisseur{
 }
 
 entity Facture {
-    factureId Integer required
+    @Id factureId Long
     factureNumero String
     factureDate ZonedDateTime
     factureDateSysteme ZonedDateTime
@@ -45,8 +47,9 @@ entity Facture {
     factureTimbe Float
     factureAutresFrais Float
 }
-entity ArticleMouvement{
-    articleMouvementId Integer required
+
+entity ArticleMouvement {
+    @Id articleMouvementId Long
     bonSortieReparationEntretienDevisId Integer
     articleId Integer
     depotniveau3Id Integer
@@ -67,8 +70,9 @@ entity ArticleMouvement{
     articleMouvementRemise Float
     articleMouvementQte Float
 }
+
 entity Article {
-    articleId Integer required
+    @Id articleId Long
     reference String required
     libelle String required
     description String
@@ -80,13 +84,13 @@ entity Article {
 }
 
 entity ArticleCategory {
-    articleCategoryId Integer required
+    @Id articleCategoryId Long
     libelle String required
     libelleAR String required
 }
 
 entity ArticleUnite {
-    articleUniteId Integer required
+    @Id articleUniteId Long
     libelle String required
     symbole String required
     libelleAR String required
@@ -128,14 +132,14 @@ entity Ligneboncommande {
     ligneBonCommandeFodecValeur Integer
 }
 entity Bonsortiereparationentretiendevis {
-    bonSortieReparationEntretienDevisId Integer required
+    @Id bonSortieReparationEntretienDevisId Long
     reparationEntretienDevisId Integer
     bonSortieReparationEntretienDevisNumero Integer
     bonSortieReparationEntretienDevisDate ZonedDateTime
     bonSortieReparationEntretienDevisDateSysteme ZonedDateTime
 }
 entity Bonretour {
-    bonRetourId Integer required
+    @Id bonRetourId Long
     bonRetourNumero String
     bonRetourDate ZonedDateTime
     bonRetourIdObservation String required
@@ -146,14 +150,14 @@ entity Boncommandeaffectationvehicule {
     idVehicule Integer required
 }
 
-
 entity Fodec {
-    idFodec Integer required
+    @Id idFodec Long
     libelle String
     valeur Float
 }
+
 entity Factureaccident{
-    factureAccidentId Integer required
+    @Id factureAccidentId Long
     //factureAccidentFactureId Integer required
     //factureAccidentVehiculeId Integer required
     //factureAccidentFournisseurId Integer required
@@ -172,7 +176,7 @@ relationship ManyToOne {
 }
 
 relationship ManyToOne {
-  Article{articleCategoryId required} to ArticleCategory
+    Article{articleCategoryId required} to ArticleCategory
 }
 
 relationship ManyToOne {
@@ -214,7 +218,7 @@ relationship ManyToOne {
     Factureaccident {factureAccidentFactureId} to Facture {factureId}
 }
 relationship ManyToOne {
-Factureaccident {factureAccidentFournisseurId} to Fournisseur {fournisseurId}
+    Factureaccident {factureAccidentFournisseurId} to Fournisseur {fournisseurId}
 }
 
 paginate Fournisseur with pagination
