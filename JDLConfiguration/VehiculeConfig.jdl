@@ -204,7 +204,6 @@ entity VehiculeAccident {
     observation String
     expertiseDate ZonedDateTime
     villeAdresseId Integer unique
-    personnelId Integer
     minute Integer
     heure Integer
     commentaires String

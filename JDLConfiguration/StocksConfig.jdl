@@ -17,8 +17,8 @@ entity Boncommande {
 
 entity Bonlivraison {
     @Id bonLivraisonId Long
-    bonLivraisonNumero ZonedDateTime required
-    bonLivraisonDate String required
+    bonLivraisonNumero String required
+    bonLivraisonDate ZonedDateTime required
     bonLivraisonDateSysteme String
     bonLivraisonObservation Integer
 }

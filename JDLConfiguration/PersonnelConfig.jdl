@@ -51,17 +51,17 @@ entity Personnelautrepersonnel {
 }
 
 relationship OneToOne {
-    Personnelchauffeur{personnelReference} to  Personnel
+    Personnelchauffeur{personnelReference} to Personnel
 }
 relationship ManyToOne {
     Personnel{gradeId} to Personnelgrade
 }
 
 relationship OneToOne {
-    Personnelattributionquotacarburant{PersonnelId}  to Personnel
+    Personnelattributionquotacarburant{PersonnelId} to Personnel
 }
 relationship OneToOne {
-    Personnelautrepersonnel{personnelReference}  to Personnel
+    Personnelautrepersonnel{personnelReference} to Personnel
 }
 
 paginate Personnel with pagination
