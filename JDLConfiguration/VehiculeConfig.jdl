@@ -1,43 +1,47 @@
 entity Vehicule {
-    couleur String
-    couleurAR String
-    cylindree Integer required
-    dateInsertion ZonedDateTime
-    datePremierMiseEnCirculation ZonedDateTime
-    matriculeVehicule String required
-    matriculeAR String
-    nombrePlaces Integer required
-    nombrePortes Integer required
-    nombreRoue Integer
-    numeroChassie String
-    odometre Integer required
-    poids Integer
-    puissance Integer required
-    matriculePE String
-    prix Double
-    dateAcquisition ZonedDateTime
-    description String
+    @Id vehiculeReference Long
+    vehiculeCouleur String
+    vehiculeCouleurAR String
+    vehiculeCylindree Integer
+    vehiculeDateInsertion ZonedDateTime
+    vehiculeDatePremierMiseEnCirculation ZonedDateTime
+    vehiculeMatricule String
+    vehiculeMatriculeAR String
+    vehiculeNombrePlaces Integer
+    vehiculeNombrePortes Integer
+    vehiculeNombreRoue Integer
+    vehiculeNumeroChassie String
+    vehiculeOdometre Integer
+    vehiculePoids Integer
+    vehiculePuissance Integer
+    vehiculeMatriculePE String
+    vehiculePrix Double
+    vehiculeDateAcquisition ZonedDateTime
+    vehiculeDescription String
     poidLourd Integer required
 }
 
-entity MDeafVehiculeGenre {
-    idClt Integer
-    libelle String
-    libelleAR String
+entity Mdeafvehiculegenre {
+    @Id mdeafVehiculeGenreId Long
+    mdeafVehiculeGenreIdClt Integer
+    mdeafVehiculeGenrelibelle String
+    mdeafVehiculeGenrelibelleAR String
 }
 
-entity MDeafVehiculeModeleCommercial {
-    libelle String
-    libelleAR String
-    description String
-    descriptionAR String
+entity Mdeafvehiculemodelecommercial {
+    @Id mdeafVehiculeModeleCommercialId Long
+    mdeafVehiculeModeleCommercialLibelle String
+    mdeafVehiculeModeleCommercialLibelleAR String
+    mdeafVehiculeModeleCommercialDescription String
+    mdeafVehiculeModeleCommercialDescriptionAR String
 }
 
-entity VehiculeUnite {
-    dateAffectation ZonedDateTime
+entity Vehiculeunite {
+    vehiculeUniteDateAffectation ZonedDateTime
 }
 
 entity Unite {
+    @Id uniteId Long
     uniteIdClt Integer
     uniteLibelle String
     uniteLibelleAR String
@@ -48,342 +52,376 @@ entity Unite {
     uniteMatriculeResponsable Integer
 }
 
-entity VehiculeCategory {
-    cone Blob
-    libelle String
-    libelleAR String
+entity Vehiculecategorie {
+    @Id vehiculeCategorieId Long
+    vehiculeCategorieIcone Blob
+    vehiculeCategorieLibelle String
+    vehiculeCategorieLibelleAR String
 }
 
 entity Climatisation {
+    @Id climatisationId Long
     libelle String
 }
 
-entity Etat {
-    libelle String
-    libelleAR String
-    description String
-    descriptionAR String
+entity Vehiculeetat {
+    @Id vehiculeEtatId Long
+    vehiculeEtatLibelle String
+    vehiculeEtatLibelleAR String
+    vehiculeEtatDescription String
+    vehiculeEtatDescriptionAR String
 }
 
 entity Carburant {
+    @Id carburantId Long
     libelle String
     libelleAR String
     description String
     descriptionAR String
 }
 
-entity SourceAcquisition {
-    libelle String
-    libelleAR String
-    description String
-    descriptionAR String
+entity Vehiculesourceacquisition {
+    @Id vehiculeSourceAcquisitionId Long
+    vehiculeSourceAcquisitionLibelle String
+    vehiculeSourceAcquisitionLibelleAR String
+    vehiculeSourceAcquisitionDescription String
+    vehiculeSourceAcquisitionDescriptionAR String
 }
 
-entity Transmission {
-    libelle String
-    libelleAR String
+entity Vehiculetransmission {
+    @Id vehiculeTransmissionId Long
+    vehiculeTransmissionLibelle String
+    vehiculeTransmissionLibelleAR String
 }
 
-entity DimensionRoue {
-    libelle String
+entity Vehiculedimensionroue {
+    @Id vehiculeDimensionRoueId Long
+    vehiculeDimensionRoueLibelle String
 }
 
-entity OdometreType {
-    libelle String
-    description String
+entity Vehiculeodometretype {
+    @Id vehiculeOdometreTypeReference Long
+    vehiculeOdometreTypeLibelle String
+    vehiculeOdometreTypeDescription String
 }
 
-entity AcquisitionType {
-    libelle String
-    description String
-    libelleAR String
+entity Vehiculeacquisitiontype {
+    @Id vehiculeAcquisitionTypeID Long
+    vehiculeAcquisitionTypeLibelle String
+    vehiculeAcquisitionTypeDescription String
+    vehiculeAcquisitionTypeLibelleAR String
 }
 
-entity AffectationType {
-    idClt String
-    libelle String
-    libelleAR String
+entity Vehiculeaffectationtype {
+    @Id typeaffectationId Long
+    typeaffectationIdClt String
+    typeaffectationLibelle String
+    typeaffectationLibelleAR String
 }
 
-entity Version {
-    libelle String
-    libelleAR String
-    idClt Integer
+entity Vehiculeversion {
+    @Id vehiculeVersionId Long
+    vehiculeVersionLibelle String
+    vehiculeVersionLibelleAR String
+    vehiculeVersionIdClt Integer
 }
 
-entity MarqueModele {
-    idClt Integer
-    libelle String
-    libelleAR String
+entity Vehiculemarquemodele {
+    @Id vehiculeModeleId Long
+    vehiculeModeleIdClt Integer
+    vehiculeModeleLibelle String
+    vehiculeModeleMarqueLibelleAR String
 }
 
-entity Marque {
-    idClt Integer
-    libelle String
-    libelleAR String
+entity Vehiculemarque {
+    @Id vehiculeModeleMarqueId Long
+    vehiculeModeleMarqueIdClt Integer
+    vehiculeModeleMarqueLibelle String
+    vehiculeModeleMarqueLibelleAR String
 }
 
-entity VehiculeEquipementVehicule
+entity Vehiculeequipementvehicule
 
-entity VehiculeEquipement {
-    description String
-    libelle String
+entity Vehiculeequipement {
+    @Id equipementVehiculeId Long
+    equipementVehiculeDescription String
+    equipementVehiculeLibelle String
 }
 
-entity VehiculeEquipementType {
-    description String
-    libelle String
+entity Vehiculeequipementtype {
+    @Id typeEquipementVehiculeId Long
+    typeEquipementVehiculeDescription String
+    typeEquipementVehiculeLibelle String
 }
 
-entity AssuranceModeReglement {
-    modeReglementLibelle String required
+entity Assurancemodereglement {
+    @Id modereglementId Long
+    modereglementLibelle String
 }
 
-entity VehiculeVignette {
-    dateDebut ZonedDateTime
-    dateFin ZonedDateTime
-    dateReglementReelle ZonedDateTime required
-    numeroQuittance String
-    supression Integer
-    prix Double
+entity Vehiculevignette {
+    @Id vehiculeVignetteReference Long
+    vehiculeVignetteDateDebut ZonedDateTime
+    vehiculeVignetteDateFin ZonedDateTime
+    vehiculeVignetteDateReglementReelle ZonedDateTime
+    vehiculeVignetteDateReglementTheorique ZonedDateTime
+    vehiculeVignetteNumeroQuttance String
+    vehiculeVignetteSupression Integer
+    vehiculeVignettePrix Double
 }
 
-entity VehiculeVignetteDieselQuittance {
-    dateDebut ZonedDateTime
-    dateFin ZonedDateTime
-    montant String
+entity Vehiculevignettedieselquittance {
+    @Id vignetteQuittanceDieselId Long
+    vignetteQuittanceDieselDateDebut ZonedDateTime
+    vignetteQuittanceDieselDateFin ZonedDateTime
+    vignetteQuittanceDieselMontant String
+    vignetteQuittanceDieselNumeroQuttance String
 }
 
-entity VehiculeVignetteDiesel {
-    dateDebut ZonedDateTime
-    dateFin ZonedDateTime
-    montant String
+entity Vehiculevignettediesel {
+    @Id vignetteDieselId Long
+    vignetteDieselDateDebut ZonedDateTime
+    vignetteDieselDateFin ZonedDateTime
+    vignetteDieselMontant String
 }
 
-entity VehiculeContraventionNature {
-    libelle String
-    description String
-    libelleAR String
+entity Vehiculecontraventionnature {
+    @Id vehiculeContraventionNatureId Long
+    vehiculeContraventionNatureLibelle String
+    vehiculeContraventionNatureDescription String
+    vehiculeContraventionNatureLibelleAR String
 }
 
-entity VehiculeContravention {
-    reference String
-    dateReelle ZonedDateTime
-    dateRecu ZonedDateTime
-    dateSysteme ZonedDateTime
-    montant Float
-    heureReelle Integer
-    minuteReelle Integer
+entity Vehiculecontravention {
+    @Id vehiculeContraventionId Long
+    vehiculeContraventionReference String
+    vehiculeContraventionDateReelle ZonedDateTime
+    vehiculeContraventionDateRecu ZonedDateTime
+    vehiculeContraventionDateSysteme ZonedDateTime
+    vehiculeContraventionMontant Float
+    vehiculeContraventionHeureReelle Integer
+    vehiculeContraventionMinuteReelle Integer
     personnelReference Integer
 }
 
-entity VehiculeContraventionType {
-    libelle String
-    libelleAR String
-    description String
-    descriptionAR String
+entity Vehiculecontraventiontype {
+    @Id vehiculeContraventionTypeId Long
+    vehiculeContraventionTypeLibelle String
+    vehiculeContraventionTypeLibelleAR String
+    vehiculeContraventionTypeDescription String
+    vehiculeContraventionTypeDescriptionAR String
 }
 
-entity VehiculeVisiteTechnique {
-    dateProchaineVisite ZonedDateTime required
-    dateReelleVisite ZonedDateTime required
-    dateReglement ZonedDateTime
-    dateVisite ZonedDateTime required
-    numRecu String required
-    prix Float required
-    supression Integer
+entity Vehiculevisitetechnique {
+    @Id vehiculeVisiteTechniqueReference Long
+    vehiculeVisiteTechniqueDateProchaineVisite ZonedDateTime
+    vehiculeVisiteTechniqueDateReelleVisite ZonedDateTime
+    vehiculeVisiteTechniqueDateReglement ZonedDateTime
+    vehiculeVisiteTechniqueDateVisite ZonedDateTime
+    vehiculeVisiteTechniqueNumRecu String
+    vehiculeVisiteTechniquePrix Float
+    vehiculeVisiteTechniqueSupression Integer
 }
 
-entity VehiculeAccident {
-    date ZonedDateTime
-    blesse Integer
-    degat Integer
-    temoin String
-    cas Integer
-    degatApparent String
-    observation String
-    expertiseDate ZonedDateTime
-    villeAdresseId Integer unique
-    minute Integer
-    heure Integer
-    commentaires String
-    prixReparation Float
-    commentaire String
-    image Blob
-    fraisRemboursement Double
-    fraisPieces Float
-    fraisMainOuevre Float
-    personnelId Integer unique
+entity Vehiculeaccident {
+    @Id vehiculeAccidentId Long
+    vehiculeAccidentDate ZonedDateTime
+    vehiculeAccidentBlesse Integer
+    vehiculeAccidentDegat Integer
+    vehiculeAccidentTemoin String
+    vehiculeAccidentCas Integer
+    vehiculeAccidentDegatApparent String
+    vehiculeAccidentObservation String
+    vehiculeAccidentExpertiseDate ZonedDateTime
+    villeAdresseId Integer
+    personnelId Integer
+    vehiculeAccidentMinute Integer
+    vehiculeAccidentHeure Integer
+    vehiculeAccidentCommentaires String
+    vehiculeAccidentPrixReparation Float
+    vehiculeAccidentImage Blob
+    vehiculeAccidentFraisRemboursement Double
+    vehiculeAccidentFraisPieces Float
+    vehiculeAccidentFraisMainOuevre Float
 }
 
-entity AssurancePoliceVehicule {
-    dateRenouvellement ZonedDateTime
-    expireLe ZonedDateTime
-    supression Integer
-    valableDu ZonedDateTime
+entity Assurancepolicevehicule {
+    @Id assurancePoliceReference Long
+    assurancePoliceVehiculeDateRenouvellement ZonedDateTime
+    assurancePoliceVehiculeExpireLe ZonedDateTime
+    assurancePoliceVehiculeSupression Integer
+    assurancePoliceVehiculeValableDu ZonedDateTime
 }
 
-entity AssurancePoliceQuittance {
-    dateDebut ZonedDateTime
-    dateFin ZonedDateTime
-    dateReglement ZonedDateTime
-    montant Double
-    numeroQuittance String
-    suppression Integer
+entity Assurancepolicequittance {
+    @Id assurancePoliceQuittanceId Long
+    assurancePoliceQuittanceDateDebut ZonedDateTime
+    assurancePoliceQuittanceDateFin ZonedDateTime
+    assurancePoliceQuittanceDateReglement ZonedDateTime
+    assurancePoliceQuittanceMontant Double
+    assurancePoliceQuittanceNumeroQuttance String
+    assurancePoliceQuittanceSuppression Integer
 }
 
-entity AssurancePoliceValiditeQuittance {
-    libelle String
-    nombreJours Integer
+entity Assurancepolicevaliditequittance {
+    @Id assurancePoliceValiditeQuittanceId Long
+    assurancePoliceValiditeQuittanceLibelle String
+    assurancePoliceValiditeQuittanceNombreJours Integer
 }
 
-entity AssurancePolice {
-    dateRenouvellementAssurance ZonedDateTime
-    expireLe ZonedDateTime
-    montantAnnuel Double
-    NumeroContrat String
-    suppression Integer
-    valableDu ZonedDateTime
+entity Assurancepolice {
+    @Id assurancePoliceReference Long
+    assurancePoliceDateRenouvellementAssurance ZonedDateTime
+    assurancePoliceExpireLe ZonedDateTime
+    assurancePoliceMontantAnnuel Double
+    assurancePoliceNumeroContrat String
+    assurancePoliceSuppression Integer
+    assurancePoliceValableDu ZonedDateTime
 }
 
-entity AssurancePoliceAssureur {
-    adresse String
-    emails String
-    fax String
-    gouvernorat String
-    libelle String
-    nomComplet String
-    numeroTelephone String
-    siteWeb String
-    ville String
+entity Assurancepoliceassureur {
+    @Id assurancePoliceAssureurId Long
+    assureurAdresse String
+    assureurEmails String
+    assureurFax String
+    assureurGouvernorat String
+    assureurLibelle String
+    assureurNomComplet String
+    assureurNumeroTelephone String
+    assureurSiteWeb String
+    assureurVille String
 }
 
-entity AssurancePoliceResiliation {
-    libelle String
-    nombreJours Integer
+entity Assurancepoliceresiliation {
+    @Id assurancePoliceResiliationId Long
+    assurancePoliceResiliationLibelle String
+    assurancePoliceResiliationNombreJours Integer
 }
 
-entity AssurancePoliceTypeProtectionR
-
-entity AssurancePoliceTypeProtection {
-    description String
-    libelle String
+entity Assurancepolicetypeprotection_r {
+    @Id typeprotectionId Long
 }
 
-relationship ManyToOne {
-    Vehicule{MDeafVehiculeGenre required} to MDeafVehiculeGenre{Vehicule}
-}
-
-relationship ManyToOne {
-    Vehicule{MDeafVehiculeModeleCommercial} to MDeafVehiculeModeleCommercial{Vehicule}
-}
-
-relationship ManyToOne {
-    VehiculeUnite{Vehicule required} to Vehicule{VehiculeUnite}
-}
-
-relationship ManyToOne {
-    VehiculeUnite{Unite required} to Unite{VehiculeUnite}
+entity Assurancepolicetypeprotection {
+    @Id assurancePoliceTypeProtectionId Long
+    assurancePoliceTypeProtectionDescription String
+    assurancePoliceTypeProtectionLibelle String
 }
 
 relationship ManyToOne {
-    VehiculeEquipementVehicule{Vehicule} to Vehicule{VehiculeEquipementVehicule}
+    Vehicule{Mdeafvehiculegenre} to Mdeafvehiculegenre{Vehicule}
 }
 
 relationship ManyToOne {
-    VehiculeEquipementVehicule{VehiculeEquipement} to VehiculeEquipement{VehiculeEquipementVehicule}
+    Vehicule{Mdeafvehiculemodelecommercial} to Mdeafvehiculemodelecommercial{vehiculeId}
 }
 
 relationship ManyToOne {
-    VehiculeEquipement{VehiculeEquipementType} to VehiculeEquipementType{VehiculeEquipement}
+    Vehiculeunite{Vehicule} to Vehicule{Vehiculeunite}
 }
 
 relationship ManyToOne {
-    AssurancePoliceTypeProtectionR{AssurancePoliceTypeProtection} to AssurancePoliceTypeProtection{AssurancePoliceTypeProtectionR}
+    Vehiculeunite{Unite} to Unite{VehiculeUnite}
 }
 
 relationship ManyToOne {
-    AssurancePoliceTypeProtectionR{AssurancePolice} to AssurancePolice{AssurancePoliceTypeProtectionR}
+    Vehiculeequipementvehicule{Vehicule} to Vehicule{VehiculeEquipementVehicule}
+}
+
+relationship ManyToOne {
+    Vehiculeequipementvehicule{VehiculeEquipement} to Vehiculeequipement{VehiculeEquipementVehicule}
+}
+
+relationship ManyToOne {
+    Vehiculeequipement{VehiculeEquipementType} to Vehiculeequipementtype{VehiculeEquipement}
+}
+
+relationship ManyToOne {
+    Assurancepolicetypeprotection_r{AssurancePoliceTypeProtection} to Assurancepolicetypeprotection{AssurancePoliceTypeProtectionR}
+}
+
+relationship ManyToOne {
+    Assurancepolicetypeprotection_r{AssurancePolice} to Assurancepolice{AssurancePoliceTypeProtectionR}
 }
 
 relationship  ManyToOne {
-    AssurancePoliceVehicule{AssurancePolice} to AssurancePolice{AssurancePoliceVehicule}
+    Assurancepolicevehicule{AssurancePolice} to Assurancepolice{AssurancePoliceVehicule}
 }
 
 relationship  ManyToOne {
-    AssurancePolice{AssurancePoliceAssureur} to AssurancePoliceAssureur{AssurancePolice}
+    Assurancepolice{AssurancePoliceAssureur} to Assurancepoliceassureur{AssurancePolice}
 }
 
 relationship  ManyToOne {
-    AssurancePolice{AssurancePoliceResiliation} to AssurancePoliceResiliation{AssurancePolice}
+    Assurancepolice{AssurancePoliceResiliation} to Assurancepoliceresiliation{AssurancePolice}
 }
 
 relationship  ManyToOne {
-    AssurancePoliceVehicule{AssurancePoliceQuittance} to AssurancePoliceQuittance{AssurancePoliceVehicule}
+    Assurancepolicevehicule{AssurancePoliceQuittance} to Assurancepolicequittance{AssurancePoliceVehicule}
 }
 
 relationship  ManyToOne {
-    AssurancePoliceQuittance{Etat} to Etat{AssurancePoliceQuittance}
+    Assurancepolicequittance{Etat} to Vehiculeetat{AssurancePoliceQuittance}
 }
 
 relationship  ManyToOne {
-    VehiculeVisiteTechnique{Etat required} to Etat{VehiculeVisiteTechnique}
+    Vehiculevisitetechnique{VehiculeEtat} to Vehiculeetat{VehiculeVisiteTechnique}
 }
 
 relationship  ManyToOne {
-    VehiculeVisiteTechnique{Vehicule} to Vehicule{VehiculeVisiteTechnique}
+    Vehiculevisitetechnique{Vehicule} to Vehicule{VehiculeVisiteTechnique}
 }
 
 relationship  ManyToOne {
-    AssurancePoliceQuittance{AssurancePoliceValiditeQuittance} to AssurancePoliceValiditeQuittance{AssurancePoliceQuittance}
+    Assurancepolicequittance{AssurancePoliceValiditeQuittance} to Assurancepolicevaliditequittance{AssurancePoliceQuittance}
 }
 
 relationship  ManyToOne {
-    AssurancePoliceQuittance{AssuranceModeReglement} to AssuranceModeReglement{AssurancePoliceQuittance}
+    Assurancepolicequittance{AssuranceModeReglement} to Assurancemodereglement{AssurancePoliceQuittance}
 }
 
 relationship ManyToOne {
-    VehiculeAccident{Vehicule} to Vehicule{VehiculeAccident}
+    Vehiculeaccident{Vehicule} to Vehicule{VehiculeAccident}
 }
 
 relationship ManyToOne {
-    AssurancePoliceVehicule{Vehicule} to Vehicule{AssurancePoliceVehicule}
+    Assurancepolicevehicule{Vehicule} to Vehicule{AssurancePoliceVehicule}
 }
 
 relationship ManyToOne {
-    VehiculeContravention{Vehicule} to Vehicule{VehiculeContravention}
+    Vehiculecontravention{Vehicule} to Vehicule{VehiculeContravention}
 }
 
 relationship ManyToOne {
-    VehiculeContravention{Etat} to Etat{VehiculeContravention}
+    Vehiculecontravention{Etat} to Vehiculeetat{VehiculeContravention}
 }
 
 relationship ManyToOne {
-    VehiculeContravention{VehiculeContraventionNature} to VehiculeContraventionNature{VehiculeContravention}
+    Vehiculecontravention{VehiculeContraventionNature} to Vehiculecontraventionnature{VehiculeContravention}
 }
 
 relationship ManyToOne {
-    VehiculeContravention{VehiculeContraventionType} to VehiculeContraventionType{VehiculeContravention}
+    Vehiculecontravention{VehiculeContraventionType} to Vehiculecontraventiontype{VehiculeContravention}
 }
 
 relationship ManyToOne {
-    VehiculeVignetteDieselQuittance{VehiculeVignette} to VehiculeVignette{VehiculeVignetteDieselQuittance}
+    Vehiculevignettedieselquittance{VehiculeVignette} to Vehiculevignette{VehiculeVignetteDieselQuittance}
 }
 
 relationship ManyToOne {
-    VehiculeVignetteDiesel{Vehicule} to Vehicule{VehiculeVignetteDiesel}
+    Vehiculevignettediesel{Vehicule} to Vehicule{VehiculeVignetteDiesel}
 }
 
 relationship ManyToOne {
-    VehiculeVignette{AssuranceModeReglement required} to AssuranceModeReglement{VehiculeVignette}
+    Vehiculevignette{AssuranceModeReglement required} to Assurancemodereglement{VehiculeVignette}
 }
 
 relationship ManyToOne {
-    VehiculeVignette{Etat} to Etat{VehiculeVignette}
+    Vehiculevignette{Etat} to Vehiculeetat{VehiculeVignette}
 }
 
 relationship ManyToOne {
-    Vehicule{VehiculeCategory} to VehiculeCategory{Vehicule}
+    Vehicule{VehiculeCategorie} to Vehiculecategorie{Vehicule}
 }
 
 relationship ManyToOne {
@@ -391,90 +429,90 @@ relationship ManyToOne {
 }
 
 relationship ManyToOne {
-    Vehicule{Etat} to Etat{Vehicule}
+    Vehicule{Vehiculeetat} to Vehiculeetat{Vehicule}
 }
 
 relationship ManyToOne {
-    Vehicule{Carburant required} to Carburant{Vehicule}
+    Vehicule{Carburant} to Carburant{Vehicule}
 }
 
 relationship ManyToOne {
-    Vehicule{SourceAcquisition} to SourceAcquisition{Vehicule}
+    Vehicule{VehiculeSourceAcquisition} to Vehiculesourceacquisition{Vehicule}
 }
 
 relationship ManyToOne {
-    Vehicule{Transmission required} to Transmission{Vehicule}
+    Vehicule{VehiculeTransmission} to Vehiculetransmission{Vehicule}
 }
 
 relationship ManyToOne {
-    Vehicule{DimensionRoue} to DimensionRoue{Vehicule}
+    Vehicule{VehiculeDimensionRoue} to Vehiculedimensionroue{Vehicule}
 }
 
 relationship ManyToOne {
-    Vehicule{AcquisitionType} to AcquisitionType{Vehicule}
+    Vehicule{VehiculeAcquisitionType} to Vehiculeacquisitiontype{Vehicule}
 }
 
 relationship ManyToOne {
-    Vehicule{OdometreType required} to OdometreType{Vehicule}
+    Vehicule{VehiculeOdometreType} to Vehiculeodometretype{Vehicule}
 }
 
 relationship ManyToOne {
-    Vehicule{AffectationType} to AffectationType{Vehicule}
+    Vehicule{VehiculeAffectationType} to Vehiculeaffectationtype{Vehicule}
 }
 
 relationship ManyToOne {
-    Vehicule{Version} to Version{Vehicule}
+    Vehicule{VehiculeVersion} to Vehiculeversion{Vehicule}
 }
 
 relationship ManyToOne {
-    Version{MarqueModele required} to MarqueModele{Version}
+    Vehiculeversion{VehiculeMarqueModele} to Vehiculemarquemodele{VehiculeVersion}
 }
 
 relationship ManyToOne {
-    Version{VehiculeCategory} to VehiculeCategory{Version}
+    Vehiculeversion{VehiculeCategorie} to Vehiculecategorie{VehiculeVersion}
 }
 
 relationship ManyToOne {
-    Vehicule{MarqueModele} to MarqueModele{Vehicule}
+    Vehicule{VehiculeMarqueModele} to Vehiculemarquemodele{Vehicule}
 }
 
 relationship ManyToOne {
-    MarqueModele{Marque} to Marque{MarqueModele}
+    Vehiculemarquemodele{vehiculeMarque} to Vehiculemarque{vehiculeMarqueModele}
 }
 
 paginate Vehicule with pagination
-paginate MDeafVehiculeGenre with pagination
-paginate MDeafVehiculeModeleCommercial with pagination
-paginate VehiculeUnite with pagination
-paginate VehiculeCategory with pagination
+paginate Mdeafvehiculegenre with pagination
+paginate Mdeafvehiculemodelecommercial with pagination
+paginate Vehiculeunite with pagination
+paginate Vehiculecategorie with pagination
 paginate Climatisation with pagination
 paginate Carburant with pagination
-paginate Etat with pagination
-paginate SourceAcquisition with pagination
-paginate DimensionRoue with pagination
-paginate OdometreType with pagination
-paginate Transmission with pagination
-paginate AcquisitionType with pagination
-paginate AffectationType with pagination
-paginate Version with pagination
-paginate MarqueModele with pagination
-paginate Marque with pagination
-paginate VehiculeEquipementVehicule with pagination
-paginate VehiculeEquipement with pagination
-paginate VehiculeEquipementType with pagination
-paginate VehiculeVignette with pagination
-paginate VehiculeVignetteDieselQuittance with pagination
-paginate VehiculeContravention with pagination
-paginate VehiculeContraventionNature with pagination
-paginate VehiculeContraventionType with pagination
-paginate VehiculeVisiteTechnique with pagination
-paginate VehiculeAccident with pagination
-paginate AssuranceModeReglement with pagination
-paginate AssurancePolice with pagination
-paginate AssurancePoliceQuittance with pagination
-paginate AssurancePoliceResiliation with pagination
-paginate AssurancePoliceAssureur with pagination
-paginate AssurancePoliceValiditeQuittance with pagination
-paginate AssurancePoliceVehicule with pagination
-paginate AssurancePoliceTypeProtectionR with pagination
-paginate AssurancePoliceTypeProtection with pagination
+paginate Vehiculeetat with pagination
+paginate Vehiculesourceacquisition with pagination
+paginate Vehiculedimensionroue with pagination
+paginate Vehiculeodometretype with pagination
+paginate Vehiculetransmission with pagination
+paginate Vehiculeacquisitiontype with pagination
+paginate Vehiculeaffectationtype with pagination
+paginate Vehiculeversion with pagination
+paginate Vehiculemarquemodele with pagination
+paginate Vehiculemarque with pagination
+paginate Vehiculeequipementvehicule with pagination
+paginate Vehiculeequipement with pagination
+paginate Vehiculeequipementtype with pagination
+paginate Vehiculevignette with pagination
+paginate Vehiculevignettedieselquittance with pagination
+paginate Vehiculecontravention with pagination
+paginate Vehiculecontraventionnature with pagination
+paginate Vehiculecontraventiontype with pagination
+paginate Vehiculevisitetechnique with pagination
+paginate Vehiculeaccident with pagination
+paginate Assurancemodereglement with pagination
+paginate Assurancepolice with pagination
+paginate Assurancepolicequittance with pagination
+paginate Assurancepoliceresiliation with pagination
+paginate Assurancepoliceassureur with pagination
+paginate Assurancepolicevaliditequittance with pagination
+paginate Assurancepolicevehicule with pagination
+paginate Assurancepolicetypeprotection_r with pagination
+paginate Assurancepolicetypeprotection with pagination

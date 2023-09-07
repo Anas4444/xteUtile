@@ -16,9 +16,9 @@ entity Personnel {
     personnelSalaire Integer
     personnelDateSortie ZonedDateTime
     personnelDateGrade ZonedDateTime
-    fonctionId Integer
-    etatId Integer
-    uniteId Integer
+    fonctionId Integer unique
+    etatId Integer unique
+    uniteId Integer unique
     categoriePersonnel Integer
 }
 
@@ -32,7 +32,7 @@ entity Personnelgrade {
 
 entity Personnelchauffeur {
     @Id chauffeurReference Long
-    disponibiliteId String
+    disponibiliteId String unique
     personnelchauffeurprovisoire Integer
 }
 
@@ -48,20 +48,6 @@ entity Personnelautrepersonnel {
     autrepersonnelDepartement String
     autrepersonnelDepartementAR String
     autrepersonnelEmail String
-}
-
-relationship OneToOne {
-    Personnelchauffeur{personnelReference} to Personnel
-}
-relationship ManyToOne {
-    Personnel{gradeId} to Personnelgrade
-}
-
-relationship OneToOne {
-    Personnelattributionquotacarburant{personnelReference} to Personnel
-}
-relationship OneToOne {
-    Personnelautrepersonnel{personnelReference} to Personnel
 }
 
 paginate Personnel with pagination

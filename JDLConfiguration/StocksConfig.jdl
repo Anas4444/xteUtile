@@ -1,7 +1,7 @@
 entity Boncommande {
     @Id bonCommandeId Long
     bonCommandeNumero Integer
-    bonCommandeDate ZonedDateTime required
+    bonCommandeDate ZonedDateTime
     bonCommandeDateSysteme ZonedDateTime
     bonCommandeObjet String required
     bonCommandeCommentaire String
@@ -16,9 +16,9 @@ entity Boncommande {
 }
 
 entity Bonlivraison {
-    @Id bonLivraisonId Long
-    bonLivraisonNumero String required
-    bonLivraisonDate ZonedDateTime required
+    @Id bonlivraisonId Long
+    bonLivraisonNumero ZonedDateTime
+    bonLivraisonDate String
     bonLivraisonDateSysteme String
     bonLivraisonObservation Integer
 }
@@ -27,11 +27,11 @@ entity Fournisseur {
     @Id fournisseurId Long
     fournisseurRaisonSociale String
     fournisseurAdresse String
-    fournisseurTelephone String required
-    fournisseurMatriculeFiscale String required
-    fournisseurRegistreCommercial String required
+    fournisseurTelephone String
+    fournisseurMatriculeFiscale String
+    fournisseurRegistreCommercial String
     fournisseurSiteWeb String
-    fournisseurEmails String required
+    fournisseurEmails String
 }
 
 entity Facture {
@@ -46,15 +46,14 @@ entity Facture {
     factureMontantTVA Float
     factureTimbe Float
     factureAutresFrais Float
+    factureType Integer
+    factureDescription String
 }
 
 entity ArticleMouvement {
     @Id articleMouvementId Long
     bonSortieReparationEntretienDevisId Integer
-    articleId Integer
-    depotniveau3Id Integer
-    bonLivraisonId Integer
-    articleMouvementDate Integer
+    articleMouvementDate ZonedDateTime
     articleMouvementDateSysteme ZonedDateTime
     articleMouvementEtat Integer
     articleMouvementPrixAchatHT Float
@@ -73,55 +72,61 @@ entity ArticleMouvement {
 
 entity Article {
     @Id articleId Long
-    reference String required
-    libelle String required
-    description String
-    qteEnStock Double required
-    qteSeuil Double
-    referenceClient String unique
-    typeArticle Integer required
-    vehiculeModeleMarqueId Integer unique
+    vehiculeModeleMarqueId Integer
+    articleReference String
+    articleLibelle String
+    articleDescription String
+    articleQteEnStock Double
+    articleQteSeuil Double
+    ReferenceClient String
+    typeArticle Integer
 }
 
-entity ArticleCategory {
-    @Id articleCategoryId Long
-    libelle String required
-    libelleAR String required
+entity ArticleCategorie {
+    @Id articleCategorieId Long
+    articleCategorieLibelle String
+    articleCategorieLibelleAR String required
 }
 
 entity ArticleUnite {
     @Id articleUniteId Long
-    libelle String required
-    symbole String required
-    libelleAR String required
-    symboleAR String required
+    articleUniteLibelle String
+    articleUniteSymbole String
+    articleUniteLibelleAR String
+    articleUniteSymboleAR String
 }
 
-entity DepotNiveau1 {
-    libelle String required
-    description String
-    descriptionAR String
-    libelleAR String
-    etat Integer
+entity Depotniveau1 {
+    @Id depotniveau1Id Long
+    depotniveau1Libelle String
+    depotniveau1Description String
+    depotniveau1DescriptionAr String
+    depotniveau1LibelleAr String
+    depotniveau1Etat Integer
 }
 
-entity DepotNiveau2 {
-    libelle String required
-    description String
-    etat Integer
-    descriptionAR String
-    libelleAR String
+entity Depotniveau2 {
+    @Id depotniveau2Id Long
+    depotniveau2Libelle String required
+    depotniveau2Description String
+    depotniveau2Nombredepotniveau3 Integer
+    depotniveau2Etat Integer
+    depotniveau2LibelleAr String
+    depotniveau2DescriptionAr String
 }
 
-entity DepotNiveau3 {
-    libelle String required
-    description String
-    etat Integer
-    descriptionAR String
-    libelleAR String
+entity Depotniveau3 {
+    @Id depotniveau3Id Long
+    depotniveau3Libelle String
+    depotniveau3Description String
+    depotniveau3Etat Integer
+    taille Integer
+    depotniveau3LibelleAr String
+    depotniveau3DescriptionAr String
 }
 
 entity Ligneboncommande {
+    @Id ligneboncommandeId Long
     ligneBonCommandeQte Float
     ligneBonCommandePrixUnitaireHT Float
     ligneBonCommandeTVA Float
@@ -139,10 +144,10 @@ entity Bonsortiereparationentretiendevis {
     bonSortieReparationEntretienDevisDateSysteme ZonedDateTime
 }
 entity Bonretour {
-    @Id bonRetourId Long
-    bonRetourNumero String
-    bonRetourDate ZonedDateTime
-    bonRetourIdObservation String required
+    @Id bonretourId Long
+    bonRetourNumero String required
+    bonRetourDate ZonedDateTime required
+    bonRetourIdObservation String
     bonRetourDateSysteme ZonedDateTime
 }
 entity Boncommandeaffectationvehicule {
@@ -151,18 +156,14 @@ entity Boncommandeaffectationvehicule {
 }
 
 entity Fodec {
-    @Id idFodec Long
+    @Id fodecId Long
     libelle String
     valeur Float
 }
 
-entity Factureaccident{
+entity Factureaccident {
     @Id factureAccidentId Long
-    //factureAccidentFactureId Integer required
-    //factureAccidentVehiculeId Integer required
-    //factureAccidentFournisseurId Integer required
-    factureAccidentAccidentId Integer required
-    factureAccidentFactureNumero Integer
+    factureAccidentFactureNumero String
     factureAccidentFournisseurNumero String
     factureAccidentVehiculeMatricule String
     factureAccidentFraisPieces Float
@@ -171,27 +172,28 @@ entity Factureaccident{
     factureAccidentDateSinistre ZonedDateTime
     factureAccidentHeureSinistre String
 }
+
 relationship ManyToOne {
-    Article{articleUniteId required} to ArticleUnite
+    Article{articleUniteId} to ArticleUnite
 }
 
 relationship ManyToOne {
-    Article{articleCategoryId required} to ArticleCategory
+    Article{articleCategorieId} to ArticleCategorie
 }
 
 relationship ManyToOne {
-    DepotNiveau3{DepotNiveau2} to DepotNiveau2{DepotNiveau3}
+    Depotniveau3{depotniveau2Id} to Depotniveau2{depotniveau3Id}
 }
 
 relationship ManyToOne {
-    DepotNiveau2{DepotNiveau1} to DepotNiveau1{DepotNiveau2}
+    Depotniveau2{depotniveau1Id} to Depotniveau1{depotNiveau2Id}
 }
 
 relationship ManyToOne {
     Facture{fournisseurId}  to Fournisseur
 }
 relationship ManyToOne {
-    Boncommande{fournisseurId } to Fournisseur
+    Boncommande{fournisseurId} to Fournisseur
 }
 relationship ManyToOne{
     Bonlivraison{fournisseurId}  to Fournisseur
@@ -222,7 +224,7 @@ relationship ManyToOne {
 }
 
 paginate Fournisseur with pagination
-paginate  Boncommande with pagination
+paginate Boncommande with pagination
 paginate Bonlivraison with pagination
 paginate Facture with pagination
 paginate Boncommandeaffectationvehicule with pagination
@@ -233,10 +235,10 @@ paginate Bonsortiereparationentretiendevis with pagination
 paginate Fodec with pagination
 
 paginate ArticleMouvement with pagination
-paginate DepotNiveau1 with pagination
-paginate DepotNiveau2 with pagination
-paginate DepotNiveau3 with pagination
+paginate Depotniveau1 with pagination
+paginate Depotniveau2 with pagination
+paginate Depotniveau3 with pagination
 paginate Article with pagination
 paginate ArticleUnite with pagination
-paginate ArticleCategory with pagination
+paginate ArticleCategorie with pagination
 paginate Factureaccident with pagination
