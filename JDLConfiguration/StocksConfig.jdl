@@ -3,7 +3,7 @@ entity Boncommande {
     bonCommandeNumero Integer
     bonCommandeDate ZonedDateTime
     bonCommandeDateSysteme ZonedDateTime
-    bonCommandeObjet String required
+    bonCommandeObjet String
     bonCommandeCommentaire String
     bonCommandeAnnee Integer
     bonCommandetotalHT Double
@@ -11,16 +11,16 @@ entity Boncommande {
     bonCommandetotalTVA Double
     bonCommandetotalRemise Double
     bonCommandetotalTTC Double
-    bonCommandeTimbre Double required
+    bonCommandeTimbre Double
     bonCommandetotalNet Double
 }
 
 entity Bonlivraison {
     @Id bonlivraisonId Long
-    bonLivraisonNumero ZonedDateTime
-    bonLivraisonDate String
-    bonLivraisonDateSysteme String
-    bonLivraisonObservation Integer
+    bonLivraisonNumero String
+    bonLivraisonDate ZonedDateTime
+    bonLivraisonDateSysteme ZonedDateTime
+    bonLivraisonObservation String
 }
 
 entity Fournisseur {
@@ -50,9 +50,8 @@ entity Facture {
     factureDescription String
 }
 
-entity ArticleMouvement {
+entity Articlemouvement {
     @Id articleMouvementId Long
-    bonSortieReparationEntretienDevisId Integer
     articleMouvementDate ZonedDateTime
     articleMouvementDateSysteme ZonedDateTime
     articleMouvementEtat Integer
@@ -82,13 +81,13 @@ entity Article {
     typeArticle Integer
 }
 
-entity ArticleCategorie {
+entity Articlecategorie {
     @Id articleCategorieId Long
     articleCategorieLibelle String
     articleCategorieLibelleAR String required
 }
 
-entity ArticleUnite {
+entity Articleunite {
     @Id articleUniteId Long
     articleUniteLibelle String
     articleUniteSymbole String
@@ -136,6 +135,7 @@ entity Ligneboncommande {
     ligneBonCommandeRemiseValeur Double
     ligneBonCommandeFodecValeur Integer
 }
+
 entity Bonsortiereparationentretiendevis {
     @Id bonSortieReparationEntretienDevisId Long
     reparationEntretienDevisId Integer
@@ -143,6 +143,7 @@ entity Bonsortiereparationentretiendevis {
     bonSortieReparationEntretienDevisDate ZonedDateTime
     bonSortieReparationEntretienDevisDateSysteme ZonedDateTime
 }
+
 entity Bonretour {
     @Id bonretourId Long
     bonRetourNumero String required
@@ -150,19 +151,22 @@ entity Bonretour {
     bonRetourIdObservation String
     bonRetourDateSysteme ZonedDateTime
 }
+
 entity Boncommandeaffectationvehicule {
-    idAffectation Integer required
+    @Id idAffectation Long
     idVehicule Integer required
 }
 
 entity Fodec {
-    @Id fodecId Long
+    @Id idFodec Long
     libelle String
     valeur Float
 }
 
 entity Factureaccident {
     @Id factureAccidentId Long
+    factureAccidentVehiculeId Integer required
+    factureAccidentAccidentId Integer required
     factureAccidentFactureNumero String
     factureAccidentFournisseurNumero String
     factureAccidentVehiculeMatricule String
@@ -174,11 +178,27 @@ entity Factureaccident {
 }
 
 relationship ManyToOne {
-    Article{articleUniteId} to ArticleUnite
+    Article{articleUniteId} to Articleunite
 }
 
 relationship ManyToOne {
-    Article{articleCategorieId} to ArticleCategorie
+    Article{articleCategorieId} to Articlecategorie
+}
+
+relationship ManyToOne {
+    Articlemouvement{bonSortieReparationEntretienDevisId} to Bonsortiereparationentretiendevis
+}
+
+relationship ManyToOne {
+    Articlemouvement{articleId} to Article
+}
+
+relationship ManyToOne {
+    Articlemouvement{depotniveau3Id} to Depotniveau3
+}
+
+relationship ManyToOne {
+    Articlemouvement{bonLivraisonId} to Bonlivraison
 }
 
 relationship ManyToOne {
@@ -192,33 +212,43 @@ relationship ManyToOne {
 relationship ManyToOne {
     Facture{fournisseurId}  to Fournisseur
 }
+
 relationship ManyToOne {
     Boncommande{fournisseurId} to Fournisseur
 }
+
 relationship ManyToOne{
-    Bonlivraison{fournisseurId}  to Fournisseur
+    Bonlivraison{fournisseurId} to Fournisseur
 }
+
 relationship ManyToOne{
-    Bonlivraison{factureId}  to Facture
+    Bonlivraison{factureId} to Facture
 }
+
 relationship ManyToOne{
-    Bonlivraison{boncommandeId}  to Boncommande
+    Bonlivraison{bonCommandeId} to Boncommande
 }
+
 relationship ManyToOne {
-    Ligneboncommande{boncommandeId} to Boncommande
+    Ligneboncommande{bonCommandeId} to Boncommande
 }
+
 relationship ManyToOne {
     Ligneboncommande {articleId} to Article
 }
+
 relationship ManyToOne {
     Bonretour {fournisseurId} to Fournisseur
 }
+
 relationship ManyToOne {
-    Boncommandeaffectationvehicule {boncommandeId} to Boncommande
+    Boncommandeaffectationvehicule {idBonCommande} to Boncommande
 }
+
 relationship ManyToOne {
     Factureaccident {factureAccidentFactureId} to Facture {factureId}
 }
+
 relationship ManyToOne {
     Factureaccident {factureAccidentFournisseurId} to Fournisseur {fournisseurId}
 }
@@ -231,14 +261,12 @@ paginate Boncommandeaffectationvehicule with pagination
 paginate Ligneboncommande with pagination
 paginate Bonretour with pagination
 paginate Bonsortiereparationentretiendevis with pagination
-
 paginate Fodec with pagination
-
-paginate ArticleMouvement with pagination
+paginate Articlemouvement with pagination
 paginate Depotniveau1 with pagination
 paginate Depotniveau2 with pagination
 paginate Depotniveau3 with pagination
 paginate Article with pagination
-paginate ArticleUnite with pagination
-paginate ArticleCategorie with pagination
+paginate Articleunite with pagination
+paginate Articlecategorie with pagination
 paginate Factureaccident with pagination
